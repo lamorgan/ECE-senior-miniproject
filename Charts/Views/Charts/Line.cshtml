@@ -1,11 +1,11 @@
-﻿@*
-    @model List<SimpleReportViewModel>
+﻿
+    @model List<SimpleReportViewModel> 
     @{
         var YValues = Newtonsoft.Json.JsonConvert.SerializeObject(Model.Select(x => x.Temp).ToList());
         var YValues2 = Newtonsoft.Json.JsonConvert.SerializeObject(Model.Select(x => x.Humidity).ToList());
         var XLabels = Newtonsoft.Json.JsonConvert.SerializeObject(Model.Select(x => x.Day).ToList());
         ViewData["Title"] = "Line Chart";
-    } *@
+    } 
 
 <!DOCTYPE html>
 
@@ -27,16 +27,11 @@
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 
 <script type="text/javascript">
-    var temp = [];
-    $.get('Temp.txt', function (data) {
-        temp = data.split("\n");
-    });
             $(function () {
                 var chartName = "chart";
             var ctx = document.getElementById(chartName).getContext('2d');
             var data = {
-                    @* labels: @Html.Raw(XLabels), *@
-                    labels: [0,1,2,3,4,5],
+                labels: @Html.Raw(XLabels),
                 datasets: [{
                     label: 'Temperature',
                     yAxisID: 'Temperature',
@@ -69,8 +64,7 @@
                         'rgba(255, 0, 0)'
                     ],
                     borderWidth: 1,
-                    @* data: @Html.Raw(YValues), *@
-                    data: temp,
+                    data: @Html.Raw(YValues),
                     fill: false,
                 }, {
                         label: 'Humidity',
@@ -104,8 +98,7 @@
                             'rgba(0, 0, 255)'
                         ],
                         borderWidth: 1,
-                        @* data: @Html.Raw(YValues2), *@
-                        data: [30,30,30,90,30,30],
+                        data: @Html.Raw(YValues2), 
                         fill: false
                 }]
             };

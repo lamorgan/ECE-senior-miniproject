@@ -13,8 +13,24 @@ namespace Charts.Controllers
 
         public IActionResult Line()
         {
+            string t;
+            string h;
+            int i = 0;
             var lstModel = new List<SimpleReportViewModel>();
-           lstModel.Add( new SimpleReportViewModel
+            System.IO.StreamReader file = new System.IO.StreamReader(@"C:\Users\David\Documents\mini-proj\Articles-master\Charts\Charts\Views\Charts\Temp.txt");
+            System.IO.StreamReader file2 = new System.IO.StreamReader(@"C:\Users\David\Documents\mini-proj\Articles-master\Charts\Charts\Views\Charts\Humidity.txt");
+
+            while (((t = file.ReadLine()) != null) && ((h = file2.ReadLine()) != null))
+            {
+                lstModel.Add(new SimpleReportViewModel
+                {
+                    Day = i,
+                    Temp = Convert.ToInt32(t),
+                    Humidity = Convert.ToInt32(h)
+                });
+                i++;
+            }
+            /*lstModel.Add( new SimpleReportViewModel
             {
                 Day = 1,
                 Temp = 87,
@@ -49,7 +65,7 @@ namespace Charts.Controllers
                 Day = 6,
                 Temp = 89,
                 Humidity = 80
-            } );
+            } ); */
             return View( lstModel );
         }
     }
