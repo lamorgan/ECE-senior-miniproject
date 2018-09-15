@@ -113,6 +113,15 @@
                             scaleLabel: {
                                 display: true,
                                 labelString: 'Temperature in F'
+                            },
+                            ticks: {
+                                min: 0,
+                                max: 120,
+                                beginAtZero: true
+                            },
+                            gridLines: {
+                                display: false,
+                                color: "rgba(0,0,0,0.2)"
                             }
                         }, {
                             id: 'Humidity',
@@ -124,10 +133,11 @@
                             },
                             ticks: {
                                 min: 0,
+                                max: 100,
                                 beginAtZero: true
                             },
                             gridLines: {
-                                display: true,
+                                display: false,
                                 color: "rgba(0,0,0,0.2)"
                             }
                          }],
